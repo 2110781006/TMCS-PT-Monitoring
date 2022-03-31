@@ -16,8 +16,8 @@ sudo yum -y install /opt/winccoa/WinCC_OA_3.15-sqldrivers-rhel-0-37.x86_64.rpm
 export OPCUA_Servers=${connectToOpcUaServers}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
-cd TMCS-PT-Monitoring/modules/opcuaSystem/OPCUA_Client
+cd TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
 #wincc database unzip
 sudo unzip -ou db.zip
 #wincc oa  starten
-sudo /opt/WinCC_OA/3.15/bin/WCCILpmon -autofreg -config /opt/winccoa/TMCS-PT-Monitoring/modules/opcuaSystem/OPCUA_Client/config/config
+sudo /opt/WinCC_OA/3.15/bin/WCCILpmon -autofreg -config /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client/config/config
