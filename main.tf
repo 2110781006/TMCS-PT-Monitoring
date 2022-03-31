@@ -28,7 +28,7 @@ module "monitoringSystem" {
 module "winccoaSystem" {
   source = "./modules/winccoaSystem"
   winccoaSystemName = "winccoaSys1"
-  connectToOpcUaServers = "${module.opcuaSystem-1.opcuaIp}|${module.opcuaSystem-2.opcuaIp}|${module.opcuaSystem-3.opcuaIp}"
+  connectToOpcUaServers = "${module.opcuaSystem-1.opcuaIp}_${module.opcuaSystem-2.opcuaIp}_${module.opcuaSystem-3.opcuaIp}"
   test1 = "${module.opcuaSystem-1.opcuaIp}"
   test2 = "hugo"
 }
