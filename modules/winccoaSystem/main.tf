@@ -20,7 +20,7 @@ resource "aws_instance" "winccoaSystem" {
     Name = "${var.winccoaSystemName}"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoaSystem.id, aws_security_group.ingress-all-opcuaPort-winccoaSystem.id]
-  user_data = templatefile("${path.module}/winccoa.tpl", { connectToOpcUaServers="${var.connectToOpcUaServers}"})
+  user_data = base64encode(templatefile("${path.module}/winccoa.tpl", { connectToOpcUaServers=var.connectToOpcUaServers, test1=var.test1, test2=var.test2 } ))
 }
 
 /************************SECURITY*****************************************/

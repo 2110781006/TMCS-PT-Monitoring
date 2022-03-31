@@ -12,6 +12,8 @@ sudo yum -y install /opt/winccoa/WinCC_OA_3.15-base-rhel-0-37.x86_64.rpm
 sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=19Jr-cEEyXFTmHqxEl-FZAARjMUEedRzx' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=19Jr-cEEyXFTmHqxEl-FZAARjMUEedRzx" -O WinCC_OA_3.15-sqldrivers-rhel-0-37.x86_64.rpm && rm -rf /tmp/cookies.txt
 #install wincc oa 3.15 sql
 sudo yum -y install /opt/winccoa/WinCC_OA_3.15-sqldrivers-rhel-0-37.x86_64.rpm
+echo ${test1} >> test1.txt
+echo ${test2} >> test2.txt
 echo ${connectToOpcUaServers} >> servers.txt
 export OPCUA_Servers=${connectToOpcUaServers}
 #clone git repo
