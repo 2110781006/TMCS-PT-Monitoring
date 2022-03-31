@@ -1,6 +1,6 @@
 [general]
-pvss_path = "C:/Siemens/Automation/WinCC_OA/3.15"
-proj_path = "C:/FH/OPCUA_Server"
+pvss_path = "/opt/WinCC_OA/3.15"
+proj_path = "/opt/winccoa/TMCS-PT-Monitoring/modules/opcuaSystem/OPCUA_Server"
 proj_version = "3.15"
 langs = "en_US.utf8"
 
