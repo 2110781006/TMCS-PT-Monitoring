@@ -56,7 +56,7 @@ resource "aws_instance" "winccoa-sub2" {
     Name = "${var.winccoaSystemName}-master"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
-  user_data = templatefile("${path.module}/winccoa-master.tpl", { winccoaSysNum="1", winccoaSysName="master${var.winccoaSystemIdx}", winccoaSub1Ip=aws_instance.winccoa-sub1.public_ip, winccoaSub2Ip=aws_instance.winccoa-sub2.public_ip } )
+  user_data = templatefile("${path.module}/winccoa.tpl", { winccoaSysNum="1", winccoaSysName="master${var.winccoaSystemIdx}", winccoaSub1Ip=aws_instance.winccoa-sub1.public_ip, winccoaSub2Ip=aws_instance.winccoa-sub2.public_ip } )
 }*/
 
 /************************SECURITY*****************************************/

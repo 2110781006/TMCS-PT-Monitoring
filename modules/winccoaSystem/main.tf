@@ -12,21 +12,21 @@ data "aws_ami" "amazon-2" {
 /************************instance*****************************************/
 
 # Resource for master
-resource "aws_instance" "opcuaSystem" {
+resource "aws_instance" "winccoaSystem" {
   ami = data.aws_ami.amazon-2.id
   instance_type = "t3.micro"
 
   tags = {
-    Name = "${var.opcuaSystemName}"
+    Name = "${var.winccoaSystemName}"
   }
-  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-opcuaSystem.id, aws_security_group.ingress-all-opcuaPort-opcuaSystem.id]
-  user_data = templatefile("${path.module}/opcuaSystem.tpl", {})
+  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoaSystem.id, aws_security_group.ingress-all-opcuaPort-winccoaSystem.id]
+  user_data = templatefile("${path.module}/winccoaSystem.tpl", {})
 }
 
 /************************SECURITY*****************************************/
 
-resource "aws_security_group" "ingress-all-ssh-opcuaSystem"{
-  name = "${var.opcuaSystemName}-allow-all-ssh-opcuaSystem"
+resource "aws_security_group" "ingress-all-ssh-winccoaSystem"{
+  name = "${var.winccoaSystemName}-allow-all-ssh-winccoaSystem"
   ingress {
     cidr_blocks = [
       "0.0.0.0/0"
@@ -44,8 +44,8 @@ resource "aws_security_group" "ingress-all-ssh-opcuaSystem"{
   }
 }
 
-resource "aws_security_group" "ingress-all-opcuaPort-opcuaSystem"{
-  name = "${var.opcuaSystemName}-allow-all-opcuaPort-opcuaSystem"
+resource "aws_security_group" "ingress-all-opcuaPort-winccoaSystem"{
+  name = "${var.winccoaSystemName}-allow-all-opcuaPort-winccoaSystem"
   ingress {
     cidr_blocks = [
       "0.0.0.0/0"

@@ -24,24 +24,9 @@ module "monitoringSystem" {
   monitoringSystemName = "monitoringSys1"
 }
 
-/*
-module "winccoaSystem-1" {
+/*WinCC Oa System*/
+module "winccoaSystem" {
   source = "./modules/winccoaSystem"
-  winccoaSystemName = "firstSystem"
-  winccoaSystemIdx = "1"
+  winccoaSystemName = "winccoaSys1"
+  connectToOpcUaServers = "${module.opcuaSystem-1.opcuaIp}|${module.opcuaSystem-2.opcuaIp}|${module.opcuaSystem-3.opcuaIp}"
 }
-
-module "winccoaSystem-2" {
-  source = "./modules/winccoaSystem"
-  winccoaSystemName = "secondSystem"
-  winccoaSystemIdx = "2"
-}
-
-output "winccoaSystem-1-url" {
-  value = "${module.winccoaSystem-1.winccoa-master-url}"
-}
-
-output "winccoaSystem-2-url" {
-  value = "${module.winccoaSystem-2.winccoa-master-url}"
-}
-*/

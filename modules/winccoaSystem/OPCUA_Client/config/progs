@@ -1,0 +1,11 @@
+version 1
+
+auth "" ""
+#Manager         | Start  | SecKill | Restart# | ResetMin | Options
+WCCILpmon        | manual |      30 |        3 |        1 |
+WCCILdata        | always |      30 |        3 |        1 |
+WCCILevent       | always |      30 |        3 |        1 |
+WCCOActrl        | always |      30 |        3 |        1 |-f pvss_scripts.lst
+WCCOAui          | manual |      30 |        3 |        1 |-m gedi
+WCCOAopcua       | always |      30 |        2 |        2 |-num 1
+WCCOActrl        |   once |      30 |        2 |        2 |init.ctl
