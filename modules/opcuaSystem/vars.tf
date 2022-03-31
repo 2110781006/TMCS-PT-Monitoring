@@ -1,0 +1,3 @@
+variable "opcuaSystemName" {
+  type = string
+}

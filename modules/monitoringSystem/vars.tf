@@ -1,0 +1,3 @@
+variable "monitoringSystemName" {
+  type = string
+}

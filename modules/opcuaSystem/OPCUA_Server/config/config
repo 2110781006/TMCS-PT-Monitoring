@@ -1,0 +1,15 @@
+[general]
+pvss_path = "C:/Siemens/Automation/WinCC_OA/3.15"
+proj_path = "C:/FH/OPCUA_Server"
+proj_version = "3.15"
+langs = "en_US.utf8"
+
+mxProxy = "none"
+
+pmonPort = 1234
+dataPort = 2345
+eventPort = 3456
+
+[opcuasrv]
+enableAnonymous = 1
+disableSecurity = 1

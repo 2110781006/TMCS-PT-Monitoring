@@ -1,0 +1,3 @@
+variable "dbSystemName" {
+  type = string
+}
