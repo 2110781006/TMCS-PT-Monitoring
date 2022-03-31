@@ -6,14 +6,17 @@ void main()
   for ( int i = 1; i <= dynlen(oaServers); i++ )
   {
     int error;
-    dpCopy("_myConn", "_myConn"+i, error);//create connection
+    if ( !dpExists("_myConn"+i) )
+      dpCopy("_myConn", "_myConn"+i, error);//create connection
 
-    dpCopy("_myData", "_myData"+i, error);//create connection
+    if ( !dpExists("_myData"+i) )
+      dpCopy("_myData", "_myData"+i, error);//create connection
 
     dpSet("_myConn"+i+".Config.ConnInfo", "opc.tcp://"+oaServers[i],
           "_myConn"+i+".Config.Subscriptions", makeDynString("_myData"+i));
 
-    dpCopy("myDp", "myDp"+i, error);//create dps
+    if ( !dpExists("myDp"+i) )
+      dpCopy("myDp", "myDp"+i, error);//create dps
 
     dpSet("_myConn"+i+".Config.Active", true);
 
