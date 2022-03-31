@@ -1,5 +1,6 @@
 void main()
 {
+  delay(120);
   dyn_string oaServers = strsplit(getenv("OPCUA_Servers"), "_");
 //   dyn_string oaServers = strsplit("1.1.1.1_1.1.1.2", "_");
 
@@ -37,7 +38,8 @@ void main()
     if ( !dpExists("myDp"+i) )
       dpCopy("myDp", "myDp"+i, error);//create dps
 
-    dpCopyConfig("myDp", "myDp"+i, makeDynString("_address"), error,1);
+    dpCopyConfig("myDp.int", "myDp"+i+".int", makeDynString("_address"), error,1);
+    dpCopyConfig("myDp.bool", "myDp"+i+".bool", makeDynString("_address"), error,1);
 
 
 
@@ -47,6 +49,10 @@ void main()
     string r = "myConn"+i+"$myData"+i+"$1$1$ns=2;s=myType.myDp.int";
     dpSet("myDp"+i+".int:_address.._reference", r);
     dpSet("myDp"+i+".int:_address.._active", true);
+
+    r = "myConn"+i+"$myData"+i+"$1$1$ns=2;s=myType.myDp.bool";
+    dpSet("myDp"+i+".bool:_address.._reference", r);
+    dpSet("myDp"+i+".bool:_address.._active", true);
   }
 
   dpQueryConnectSingle("work", false, "userdata", "SELECT '_original.._stime','_original.._value' FROM 'myDp*'");
