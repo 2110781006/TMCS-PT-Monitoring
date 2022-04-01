@@ -19,5 +19,7 @@ export DB_Host=${dbHost}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
 cd TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
-#docker  starten
+#wincc database unzip
+sudo unzip -ou db.zip
+#wincc oa  starten
 sudo -E /opt/WinCC_OA/3.15/bin/WCCILpmon -autofreg -config /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client/config/config
