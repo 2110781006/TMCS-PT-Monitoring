@@ -16,6 +16,7 @@ module "opcuaSystem-3"{
 module "dbSystem" {
   source = "./modules/databaseSystem"
   dbSystemName = "dbSys1"
+  dbPassword = var.dbPassword
 }
 
 /*Monitoring System*/
@@ -29,5 +30,9 @@ module "winccoaSystem" {
   source = "./modules/winccoaSystem"
   winccoaSystemName = "winccoaSys1"
   connectToOpcUaServers = "${module.opcuaSystem-1.opcuaIp}_${module.opcuaSystem-2.opcuaIp}_${module.opcuaSystem-3.opcuaIp}"
-  dbHost = "${module.dbSystem.dbIp}"
+  dbHost = module.dbSystem.dbIp
+}
+
+output "result" {
+  value = module.dbSystem.dbIp
 }
