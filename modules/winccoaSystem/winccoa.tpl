@@ -14,6 +14,8 @@ sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=dow
 sudo yum -y install /opt/winccoa/WinCC_OA_3.15-sqldrivers-rhel-0-37.x86_64.rpm
 echo ${connectToOpcUaServers} >> servers.txt
 export OPCUA_Servers=${connectToOpcUaServers}
+echo ${dbHost} >> dbhost.txt
+export DB_Host=${dbHost}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
 cd TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client

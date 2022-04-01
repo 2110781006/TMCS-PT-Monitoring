@@ -5,3 +5,7 @@ variable "winccoaSystemName" {
 variable "connectToOpcUaServers" {
   type = string
 }
+
+variable "dbHost" {
+  type = string
+}
