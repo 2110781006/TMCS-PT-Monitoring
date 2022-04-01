@@ -7,8 +7,8 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_Password}
-    expose:
-      - 3306
+    ports:
+      - 3306:3306
 
   adminer:
     image: adminer
