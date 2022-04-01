@@ -31,6 +31,8 @@ module "winccoaSystem" {
   winccoaSystemName = "winccoaSys1"
   connectToOpcUaServers = "${module.opcuaSystem-1.opcuaIp}_${module.opcuaSystem-2.opcuaIp}_${module.opcuaSystem-3.opcuaIp}"
   dbHost = module.dbSystem.dbIp
+  dbUser = var.dbUser
+  dbPassword = var.dbPassword
 }
 
 output "result" {

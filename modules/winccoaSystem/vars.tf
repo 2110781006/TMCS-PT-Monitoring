@@ -9,3 +9,11 @@ variable "connectToOpcUaServers" {
 variable "dbHost" {
   type = string
 }
+
+variable "dbUser" {
+  type = string
+}
+
+variable "dbPassword" {
+  type = string
+}

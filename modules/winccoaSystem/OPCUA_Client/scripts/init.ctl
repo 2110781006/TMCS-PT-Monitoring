@@ -1,3 +1,9 @@
+
+string jar="/opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/mySqlExecutor.jar";
+string dbHost = getenv("DB_Host");
+string dbUser = getenv("DB_User");
+string dbPassword = getenv("DB_Password");
+
 void main()
 {
   delay(120);
@@ -55,6 +61,13 @@ void main()
     dpSet("myDp"+i+".bool:_address.._active", true);
   }
 
+  string out, err;
+
+  system("java -jar "+jar+" jdbc:mysql://"+dbHost+"/my_db "+dbUser+" "+dbPassword+" \"CREATE TABLE my_table (host text NOT NULL,time datetime NOT NULL, value int(10) NOT NULL, PRIMARY KEY (host(40),time,value))\"" ,out,err);
+
+  if ( err != "" )
+      DebugN(err);
+
   dpQueryConnectSingle("work", false, "userdata", "SELECT '_original.._stime','_original.._value' FROM 'myDp*'");
 }
 
@@ -62,6 +75,11 @@ void work(string s, dyn_dyn_anytype dda)
 {
   for ( int i = 2; i <= dynlen(dda); i++ )
   {
-    DebugN(dda[i][1]+" : "+(string)dda[i][2]+" : "+dda[i][3]);
+    //DebugN(dda[i][1]+" : "+(string)dda[i][2]+" : "+dda[i][3]);
+    string out,err;
+    system("java -jar "+jar+" jdbc:mysql://"+dbHost+"/my_db "+dbUser+" "+dbPassword+" \"INSERT INTO my_table (host ,time, value) VALUES('"+dpSubStr(dda[i][1],DPSUB_DP_EL)+"', '"+formatTime("%Y-%m-%d %H:%M:%S", dda[i][2])+"', "+(int)dda[i][3]+")\"" ,out,err);
+
+    if ( err != "" )
+      DebugN(err);
   }
 }
