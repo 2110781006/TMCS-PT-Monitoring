@@ -12,8 +12,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 cd /opt
 #install git
 sudo yum install git -y
-#echo ${dbPassword} >> dbPassword.txt
-#export DB_Password=${dbPassword}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
 cd TMCS-PT-Monitoring/modules/monitoringSystem
