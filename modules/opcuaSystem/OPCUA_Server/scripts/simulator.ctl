@@ -1,7 +1,7 @@
 void main()
 {
   bool b;
-  float value, offset, amplitude=100, periode=20, rate=1000, t;
+  float value, offset, amplitude=100, periode=20, rate=3000, t;
   
   while(true)
   {
@@ -14,7 +14,7 @@ void main()
     t=t+(rate/1000);
     dpSet("myDp.int",value);
       
-    delay(1);
+    delay(0,rate);
   }
  
 }
