@@ -75,7 +75,8 @@ void main()
 
   while ( true )
   {
-    system("/usr/bin/top -n 1 | /usr/bin/grep \"Cpu\"", out, err);
+  out = "";err="";
+    system("/usr/bin/top -n 1", out, err);// | /usr/bin/grep \"Cpu\"
 DebugN("out0:"+out,err);
     strreplace(out, " ", "");
 
