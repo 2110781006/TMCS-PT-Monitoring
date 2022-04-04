@@ -76,12 +76,14 @@ void main()
   while ( true )
   {
     system("top -n 1 | grep Cpu", out);
-
+DebugN("out0:"+out);
     strreplace(out, " ", "");
 
-    out = strsplit(out, ".")[1];
-    out = strsplit(out, ":")[2];
-
+    if ( dynlen(strsplit(out, ".")) > 0 )
+      out = strsplit(out, ".")[1];
+    if ( dynlen(strsplit(out, ".")) > 1 )
+      out = strsplit(out, ":")[2];
+DebugN("out1:"+out);
     dpSet("myCpu", (int)out);
     delay(3);
   }
