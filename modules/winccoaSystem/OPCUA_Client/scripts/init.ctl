@@ -75,7 +75,7 @@ void main()
 
   while ( true )
   {
-    system("top -n 1 | grep cpu", out);
+    system("top -n 1 | grep Cpu", out);
 
     strreplace(out, " ", "");
 
