@@ -68,18 +68,37 @@ void main()
   if ( err != "" )
       DebugN(err);
 
-  dpQueryConnectSingle("work", false, "userdata", "SELECT '_original.._stime','_original.._value' FROM 'myDp*'");
+  if ( !dpExists("myCpu") )
+    dpCreate("myCpu", "ExampleDP_Int");
+
+  dpQueryConnectSingle("work", false, "userdata", "SELECT '_original.._stime','_original.._value' FROM '{myDp*,_MemoryCheck.FreePerc,myCpu}'", 2000);
+
+  while ( true )
+  {
+    system("top -n 1 | grep cpu", out);
+
+    strreplace(out, " ", "");
+
+    out = strsplit(out, ".")[1];
+    out = strsplit(out, ":")[2];
+
+    dpSet("myCpu", (int)out);
+    delay(3);
+  }
 }
 
 void work(string s, dyn_dyn_anytype dda)
 {
+  string insert;
   for ( int i = 2; i <= dynlen(dda); i++ )
   {
     //DebugN(dda[i][1]+" : "+(string)dda[i][2]+" : "+dda[i][3]);
-    string out,err;
-    system("java -jar "+jar+" jdbc:mysql://"+dbHost+"/my_db "+dbUser+" "+dbPassword+" \"INSERT INTO my_table (host ,time, value) VALUES('"+dpSubStr(dda[i][1],DPSUB_DP_EL)+"', '"+formatTime("%Y-%m-%d %H:%M:%S", dda[i][2])+"', "+(int)dda[i][3]+")\"" ,out,err);
-
-    if ( err != "" )
-      DebugN(err);
+    insert+= "INSERT INTO my_table (host ,time, value) VALUES('"+dpSubStr(dda[i][1],DPSUB_DP_EL)+"', '"+formatTime("%Y-%m-%d %H:%M:%S", dda[i][2])+"', "+(int)dda[i][3]+");";
   }
+
+  string out,err;
+  system("java -jar "+jar+" jdbc:mysql://"+dbHost+"/my_db "+dbUser+" "+dbPassword+" \""+insert+"\"" ,out,err);
+
+  if ( err != "" )
+    DebugN(err);
 }

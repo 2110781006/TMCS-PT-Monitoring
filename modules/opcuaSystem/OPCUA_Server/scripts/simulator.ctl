@@ -1,7 +1,13 @@
 void main()
 {
   bool b;
-  float value, offset, amplitude=100, periode=20, rate=3000, t;
+  float value, offset, amplitude, periode=40, rate=3000, t;
+
+  while ( !(amplitude > 50 && amplitude < 500) )//random amplitude
+    amplitude = rand();
+
+  while ( !(periode > 20 && periode < 300) )//random periode
+    periode = rand();
   
   while(true)
   {
@@ -16,5 +22,4 @@ void main()
       
     delay(0,rate);
   }
- 
 }
