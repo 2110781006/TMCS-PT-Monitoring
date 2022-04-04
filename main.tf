@@ -35,6 +35,10 @@ module "winccoaSystem" {
   dbPassword = var.dbPassword
 }
 
-output "result" {
+output "DB-IP" {
   value = module.dbSystem.dbIp
+}
+
+output "Grafana-URL" {
+  value = "http://${module.monitoringSystem.monitoringIp}:3000"
 }

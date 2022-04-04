@@ -14,5 +14,6 @@ cd /opt
 sudo yum install git -y
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
-cd TMCS-PT-Monitoring/modules/monitoringSystem
+cd opt/TMCS-PT-Monitoring/modules/monitoringSystem
+sudo docker volume create --name grafana-data
 sudo -E /usr/local/bin/docker-compose up -d

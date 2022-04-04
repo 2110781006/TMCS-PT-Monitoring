@@ -16,6 +16,6 @@ echo ${dbPassword} >> dbPassword.txt
 export DB_Password=${dbPassword}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
-cd TMCS-PT-Monitoring/modules/databaseSystem
+cd /opt/TMCS-PT-Monitoring/modules/databaseSystem
 sudo -E /usr/local/bin/docker-compose up -d
 
