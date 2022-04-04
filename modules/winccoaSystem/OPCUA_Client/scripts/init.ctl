@@ -75,7 +75,7 @@ void main()
 
   while ( true )
   {
-    system("top -n 1 | grep Cpu", out);
+    system("/usr/bin/top -n 1 | grep Cpu", out);
 DebugN("out0:"+out);
     strreplace(out, " ", "");
 
@@ -84,7 +84,7 @@ DebugN("out0:"+out);
     if ( dynlen(strsplit(out, ".")) > 1 )
       out = strsplit(out, ":")[2];
 DebugN("out1:"+out);
-    dpSet("myCpu", (int)out);
+    dpSet("myCpu.", (int)out);
     delay(3);
   }
 }
