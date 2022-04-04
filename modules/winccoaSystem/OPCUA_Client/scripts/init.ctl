@@ -6,7 +6,7 @@ string dbPassword = getenv("DB_Password");
 
 void main()
 {
-  delay(1);
+  delay(120);
   dyn_string oaServers = strsplit(getenv("OPCUA_Servers"), "_");
 //   dyn_string oaServers = strsplit("1.1.1.1_1.1.1.2", "_");
 
@@ -77,7 +77,7 @@ void main()
   {
   out = "";err="";
     system("mpstat | grep all", out, err);// | /usr/bin/grep \"Cpu\"
-DebugN("out0:"+out,err);
+
     strreplace(out, "all", "~");
     strreplace(out, " ", "");
 
@@ -85,7 +85,7 @@ DebugN("out0:"+out,err);
       out = strsplit(out, "~")[2];
     if ( dynlen(strsplit(out, ".")) > 0 )
       out = strsplit(out, ".")[1];
-DebugN("out1:"+out);
+
     dpSet("myCpu.", (int)out);
     delay(3);
   }
