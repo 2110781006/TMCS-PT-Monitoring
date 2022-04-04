@@ -76,14 +76,15 @@ void main()
   while ( true )
   {
   out = "";err="";
-    system("/usr/bin/top -n 1", out, err);// | /usr/bin/grep \"Cpu\"
+    system("mpstat | grep all", out, err);// | /usr/bin/grep \"Cpu\"
 DebugN("out0:"+out,err);
+    strreplace(out, "all", "~");
     strreplace(out, " ", "");
 
+    if ( dynlen(strsplit(out, "~")) > 1 )
+      out = strsplit(out, "~")[2];
     if ( dynlen(strsplit(out, ".")) > 0 )
       out = strsplit(out, ".")[1];
-    if ( dynlen(strsplit(out, ".")) > 1 )
-      out = strsplit(out, ":")[2];
 DebugN("out1:"+out);
     dpSet("myCpu.", (int)out);
     delay(3);
