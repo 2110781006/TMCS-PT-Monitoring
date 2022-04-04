@@ -75,8 +75,8 @@ void main()
 
   while ( true )
   {
-    system("sudo top -n 1 | grep Cpu", out);
-DebugN("out0:"+out);
+    system("sudo top -n 1 | grep Cpu", out, err);
+DebugN("out0:"+out,err);
     strreplace(out, " ", "");
 
     if ( dynlen(strsplit(out, ".")) > 0 )
