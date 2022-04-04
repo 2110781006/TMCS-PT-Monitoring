@@ -75,7 +75,7 @@ void main()
 
   while ( true )
   {
-    system("export TERM=linux && top -n 1 | grep Cpu", out);
+    system("sudo top -n 1 | grep Cpu", out);
 DebugN("out0:"+out);
     strreplace(out, " ", "");
 
