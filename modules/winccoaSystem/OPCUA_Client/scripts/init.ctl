@@ -87,7 +87,7 @@ void main()
       out = strsplit(out, ".")[1];
 
     dpSet("myCpu.", (int)out);
-    delay(3);
+    delay(1);
   }
 }
 
