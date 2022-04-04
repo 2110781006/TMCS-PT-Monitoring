@@ -6,7 +6,7 @@ string dbPassword = getenv("DB_Password");
 
 void main()
 {
-  delay(120);
+  delay(1);
   dyn_string oaServers = strsplit(getenv("OPCUA_Servers"), "_");
 //   dyn_string oaServers = strsplit("1.1.1.1_1.1.1.2", "_");
 
@@ -75,7 +75,7 @@ void main()
 
   while ( true )
   {
-    system("/usr/bin/top -n 1 | grep Cpu", out);
+    system("export TERM=linux && top -n 1 | grep Cpu", out);
 DebugN("out0:"+out);
     strreplace(out, " ", "");
 
