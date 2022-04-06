@@ -23,6 +23,9 @@ module "dbSystem" {
 module "monitoringSystem" {
   source = "./modules/monitoringSystem"
   monitoringSystemName = "monitoringSys1"
+  dbPassword = var.dbPassword
+  dbUrl = module.dbSystem.dbIp
+  grafanaPassword = var.grafanaPassword
 }
 
 /*WinCC Oa System*/

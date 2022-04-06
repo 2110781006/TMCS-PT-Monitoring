@@ -17,3 +17,11 @@ sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
 cd /opt/TMCS-PT-Monitoring/modules/monitoringSystem
 sudo docker volume create --name grafana-data
 sudo -E /usr/local/bin/docker-compose up -d
+sudo yum install jq -y
+export DB_Url=${dbUrl}
+export DB_Password=${dbPassword}
+sudo -E sed -i "s/<url>/$DB_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
+sudo -E sed -i "s/<password>/$DB_Password/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
+#import datasource
+export Grafana_Admin=${grafanaPassword}
+sudo curl -X "POST" "http://54.152.220.39:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Admin --data-binary @myDataSource.json
