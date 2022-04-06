@@ -23,5 +23,8 @@ export DB_Password=${dbPassword}
 sudo -E sed -i "s/<url>/$DB_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sudo -E sed -i "s/<password>/$DB_Password/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 #import datasource
-export Grafana_Admin=${grafanaPassword}
-sudo curl -X "POST" "http://54.152.220.39:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Admin --data-binary @myDataSource.json
+export Grafana_Password=${grafanaPassword}
+sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @myDataSource.json
+sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @homeDashboard.json
+sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @opcuaDashboard.json
+sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @winccoaDashboard.json
