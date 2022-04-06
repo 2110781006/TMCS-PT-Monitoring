@@ -22,6 +22,7 @@ export DB_Url=${dbUrl}
 export DB_Password=${dbPassword}
 sudo -E sed -i "s/<url>/$DB_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sudo -E sed -i "s/<password>/$DB_Password/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
+sleep 120
 #import datasource
 export Grafana_Password=${grafanaPassword}
 sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @myDataSource.json
