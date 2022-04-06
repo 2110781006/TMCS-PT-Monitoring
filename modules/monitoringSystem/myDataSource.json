@@ -9,5 +9,6 @@
   "database":"my_db",
   "basicAuth":false,
   "isDefault":true,
-  "jsonData":null
+  "jsonData":null,
+  "uid": "QLXsji8nk"
 }
