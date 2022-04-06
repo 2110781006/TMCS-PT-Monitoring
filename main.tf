@@ -39,9 +39,13 @@ module "winccoaSystem" {
 }
 
 output "DB-IP" {
-  value = module.dbSystem.dbIp
+  value = "http://${module.dbSystem.dbIp}:8080"
 }
 
 output "Grafana-URL" {
   value = "http://${module.monitoringSystem.monitoringIp}:3000"
+}
+
+output "Loki-URL" {
+  value = "http://${module.monitoringSystem.monitoringIp}:3100"
 }

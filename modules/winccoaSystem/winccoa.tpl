@@ -1,5 +1,9 @@
 #!/bin/bash
 sudo yum update -y
+#install docker
+sudo amazon-linux-extras install docker -y
+#start docker
+sudo service docker start
 #install git
 sudo yum install git -y
 sudo mkdir /opt/winccoa/
@@ -29,3 +33,5 @@ cd TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
 sudo unzip -ou db.zip
 #wincc oa  starten
 sudo -E /opt/WinCC_OA/3.15/bin/WCCILpmon -autofreg -config /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client/config/config
+
+##sudo docker run -p 24224:24224 -p 24224:24224/udp -u fluent -v /opt/myy:/fluentd/etc fluentd

@@ -19,7 +19,7 @@ resource "aws_instance" "monitoringSystem" {
   tags = {
     Name = "${var.monitoringSystemName}"
   }
-  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-monitoringSystem.id, aws_security_group.ingress-all-mariadb-monitoringSystem.id, aws_security_group.ingress-all-grafana-monitoringSystem.id]
+  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-monitoringSystem.id, aws_security_group.ingress-all-mariadb-monitoringSystem.id, aws_security_group.ingress-all-grafana-monitoringSystem.id,aws_security_group.ingress-all-loki-monitoringSystem.id]
   user_data = templatefile("${path.module}/monitoringSystem.tpl", {dbUrl= var.dbUrl, dbPassword = var.dbPassword, grafanaPassword = var.grafanaPassword})
 }
 
@@ -72,6 +72,25 @@ resource "aws_security_group" "ingress-all-grafana-monitoringSystem"{
     ]
     from_port = 3000
     to_port = 3000
+    protocol = "tcp"
+  }
+  // Terraform removes the default rule
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "ingress-all-loki-monitoringSystem"{
+  name = "${var.monitoringSystemName}-allow-all-loki-monitoringSystem"
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 3100
+    to_port = 3100
     protocol = "tcp"
   }
   // Terraform removes the default rule
