@@ -20,7 +20,7 @@ resource "aws_instance" "monitoringSystem" {
     Name = "${var.monitoringSystemName}"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-monitoringSystem.id, aws_security_group.ingress-all-mariadb-monitoringSystem.id, aws_security_group.ingress-all-grafana-monitoringSystem.id,aws_security_group.ingress-all-loki-monitoringSystem.id]
-  user_data = templatefile("${path.module}/monitoringSystem.tpl", {dbUrl= var.dbUrl, dbPassword = var.dbPassword, grafanaPassword = var.grafanaPassword, myurl = aws_instance.monitoringSystem.public_ip})
+  user_data = templatefile("${path.module}/monitoringSystem.tpl", {dbUrl= var.dbUrl, dbPassword = var.dbPassword, grafanaPassword = var.grafanaPassword })
 }
 
 
