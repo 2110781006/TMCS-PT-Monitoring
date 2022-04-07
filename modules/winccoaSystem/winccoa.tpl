@@ -25,7 +25,7 @@ export DB_Host=${dbHost}
 echo ${dbUser} >> dbUser.txt
 export DB_User=${dbUser}
 echo ${dbPassword} >> dbPassword.txt
-export DB_Password=${dbPassword}monitoringHost
+export DB_Password=${dbPassword}
 echo ${monitoringHost} >> monitoringHost.txt
 export monitoringHost=${monitoringHost}
 #clone git repo
@@ -35,6 +35,8 @@ sudo curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh |
 #replace config
 sudo cp /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/fluent.conf /etc/td-agent/td-agent.conf
 sudo -E sed -i "s/<monitoringHost>/$monitoringHost/" /etc/td-agent/td-agent.conf
+#replace service file
+sudo cp /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/td-agent.service /lib/systemd/system/td-agent.service
 #reload service
 sudo systemctl daemon-reload
 #install loki plugin

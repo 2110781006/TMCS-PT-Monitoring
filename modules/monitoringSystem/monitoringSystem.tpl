@@ -30,4 +30,5 @@ sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Typ
 sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @opcuaDashboard.json
 sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @winccoaDashboard.json
 #install loki
-sudo docker run -d --name=loki -p 3100:3100 grafana/loki -y
+sudo docker run -d --name=loki -p 3100:3100 grafana/loki
+sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @lokiDatasource.json
