@@ -17,3 +17,7 @@ variable "dbUser" {
 variable "dbPassword" {
   type = string
 }
+
+variable "monitoringHost" {
+  type = string
+}

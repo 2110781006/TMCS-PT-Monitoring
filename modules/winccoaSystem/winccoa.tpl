@@ -25,13 +25,25 @@ export DB_Host=${dbHost}
 echo ${dbUser} >> dbUser.txt
 export DB_User=${dbUser}
 echo ${dbPassword} >> dbPassword.txt
-export DB_Password=${dbPassword}
+export DB_Password=${dbPassword}monitoringHost
+echo ${monitoringHost} >> monitoringHost.txt
+export monitoringHost=${monitoringHost}
 #clone git repo
 sudo git clone https://github.com/2110781006/TMCS-PT-Monitoring.git
-cd TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
+#install fluentd
+sudo curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh
+#replace config
+sudo cp /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/fluent.conf /etc/td-agent/td-agent.conf
+sudo -E sed -i "s/<monitoringHost>/$monitoringHost/" /etc/td-agent/td-agent.conf
+#reload service
+sudo systemctl daemon-reload
+#install loki plugin
+sudo /usr/sbin/td-agent-gem install fluent-plugin-grafana-loki
+#start fluentd
+sudo systemctl start td-agent.service
+sleep 5
+cd /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
 #wincc database unzip
 sudo unzip -ou db.zip
 #wincc oa  starten
 sudo -E /opt/WinCC_OA/3.15/bin/WCCILpmon -autofreg -config /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client/config/config
-
-##sudo docker run -p 24224:24224 -p 24224:24224/udp -u fluent -v /opt/myy:/fluentd/etc fluentd
