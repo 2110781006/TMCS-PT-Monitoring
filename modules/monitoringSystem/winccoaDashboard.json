@@ -181,6 +181,7 @@
         "type": "piechart"
       },
       {
+        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -231,7 +232,20 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "value1"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Wert"
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -239,7 +253,7 @@
           "x": 3,
           "y": 0
         },
-        "id": 5,
+        "id": 6,
         "options": {
           "legend": {
             "calcs": [],
@@ -261,7 +275,7 @@
             "group": [],
             "metricColumn": "none",
             "rawQuery": true,
-            "rawSql": "SELECT\n  time AS \"time\",\n  value\nFROM my_table\nWHERE\n  $__timeFilter(time) and host = 'myCpu.'\nORDER BY time",
+            "rawSql": "SELECT\n  time AS \"time\",\n  100-value as value1\nFROM my_table\nWHERE\n  $__timeFilter(time) and host = '_MemoryCheck.FreePerc'\nORDER BY time",
             "refId": "A",
             "select": [
               [
@@ -285,7 +299,7 @@
             ]
           }
         ],
-        "title": "CPU",
+        "title": "RAM",
         "type": "timeseries"
       },
       {
@@ -443,7 +457,6 @@
         "type": "piechart"
       },
       {
-        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -494,7 +507,20 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "value"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Wert"
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -502,7 +528,7 @@
           "x": 3,
           "y": 9
         },
-        "id": 6,
+        "id": 5,
         "options": {
           "legend": {
             "calcs": [],
@@ -524,7 +550,7 @@
             "group": [],
             "metricColumn": "none",
             "rawQuery": true,
-            "rawSql": "SELECT\n  time AS \"time\",\n  value\nFROM my_table\nWHERE\n  $__timeFilter(time) and host = '_MemoryCheck.FreePerc'\nORDER BY time",
+            "rawSql": "SELECT\n  time AS \"time\",\n  value\nFROM my_table\nWHERE\n  $__timeFilter(time) and host = 'myCpu.'\nORDER BY time",
             "refId": "A",
             "select": [
               [
@@ -548,7 +574,7 @@
             ]
           }
         ],
-        "title": "RAM",
+        "title": "CPU",
         "type": "timeseries"
       }
     ],
@@ -566,30 +592,30 @@
     "timezone": "",
     "title": "WinCC OA System",
     "uid": "-PQ9Xi8nz",
-    "version": 2,
+    "version": 3,
     "weekStart": ""
   },
   "meta": {
-    "canAdmin": true,
-    "canEdit": true,
+    "type": "db",
     "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
     "canStar": true,
-    "created": "2022-04-06T19:38:58Z",
-    "createdBy": "admin",
+    "slug": "wincc-oa-system",
+    "url": "/d/-PQ9Xi8nz/wincc-oa-system",
     "expires": "0001-01-01T00:00:00Z",
-    "folderId": 0,
-    "folderTitle": "General",
-    "folderUid": "",
-    "folderUrl": "",
+    "created": "2022-04-07T06:47:36Z",
+    "updated": "2022-04-07T06:56:07Z",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 3,
     "hasAcl": false,
     "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
     "provisioned": false,
-    "provisionedExternalId": "",
-    "slug": "wincc-oa-system",
-    "type": "db",
-    "updated": "2022-04-06T19:40:53Z",
-    "updatedBy": "admin",
-    "url": "/d/-PQ9Xi8nz/wincc-oa-system",
-    "version": 2
+    "provisionedExternalId": ""
   }
 }
