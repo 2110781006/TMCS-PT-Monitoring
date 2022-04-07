@@ -1,14 +1,11 @@
 {
   "access": "proxy",
   "basicAuth": false,
-  "database": "",
   "isDefault": false,
-  "jsonData": null,
+  "jsonData": { },
   "name": "Loki",
-  "readOnly": false,
   "type": "loki",
   "typeName": "Loki",
   "uid": "R27ZZM87z",
-  "url": "<url>:3100",
-  "user": ""
+  "url": "<url>:3100"
 }
