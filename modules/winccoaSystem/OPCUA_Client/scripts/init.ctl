@@ -1,5 +1,5 @@
 
-string jar="/opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/mySqlExecutor.jar";
+string jar="/opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/mySqlExecutor/target/mySqlExecutor-1.0.jar";
 string dbHost = getenv("DB_Host");
 string dbUser = getenv("DB_User");
 string dbPassword = getenv("DB_Password");
