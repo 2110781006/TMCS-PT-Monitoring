@@ -6,10 +6,6 @@ variable "dbUrl" {
   type = string
 }
 
-variable "winccoaUrl" {
-  type = string
-}
-
 variable "dbPassword" {
   type = string
 }
