@@ -50,3 +50,7 @@ output "Grafana-URL" {
 output "Loki-URL" {
   value = "http://${module.monitoringSystem.monitoringIp}:3100"
 }
+
+output "JaegerHotrod-URL" {
+  value = "http://${module.winccoaSystem.winccoaIp}:8080"
+}
