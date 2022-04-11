@@ -36,7 +36,4 @@ sudo docker run -d --name=loki -p 3100:3100 grafana/loki
 sudo -E sed -i "s/<url>/$MY_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/lokiDatasource.json
 sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @lokiDatasource.json
 sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @winccoaLogDashboard.json
-#add jaeger datasource and dashboard
-sudo -E sed -i "s/<url>/WINCCOA_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/jaegerDatasource.json
-sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDatasource.json
-sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDashboard.json
+#add jaeger datasource and dashboard from wincc oa system

@@ -48,6 +48,12 @@ sleep 5
 sudo docker run -d --name jaeger -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14250:14250 -p 14268:14268 -p 14269:14269 -p 9411:9411 jaegertracing/all-in-one:1.32
 #run jaeger hotrod example
 sudo docker run -d --rm --link jaeger --env JAEGER_AGENT_HOST=jaeger --env JAEGER_AGENT_PORT=6831 -p8080-8083:8080-8083 jaegertracing/example-hotrod:latest all
+#add jaeger datasource and dashboard from wincc oa system
+cd /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem
+export MY_Url=$(curl http://checkip.amazonaws.com)
+sudo -E sed -i "s/<url>/MY_Url/" /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/jaegerDatasource.json
+sudo -E curl -X "POST" "http://"+monitoringHost+":3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDatasource.json
+sudo -E curl -X "POST" "http://"+monitoringHost+":3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDashboard.json
 cd /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
 #wincc database unzip
 sudo unzip -ou db.zip

@@ -26,7 +26,6 @@ module "monitoringSystem" {
   dbPassword = var.dbPassword
   dbUrl = module.dbSystem.dbIp
   grafanaPassword = var.grafanaPassword
-  winccoaUrl = module.winccoaSystem.winccoaIp
 }
 
 /*WinCC Oa System*/
