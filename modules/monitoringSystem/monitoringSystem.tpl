@@ -21,7 +21,6 @@ sudo yum install jq -y
 export DB_Url=${dbUrl}
 export DB_Password=${dbPassword}
 export MY_Url=$(curl http://checkip.amazonaws.com)
-export WINCCOA_Url=${winccoaUrl}
 sudo -E sed -i "s/<url>/$DB_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sudo -E sed -i "s/<password>/$DB_Password/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sleep 120
