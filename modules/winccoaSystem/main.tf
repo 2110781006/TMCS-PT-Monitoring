@@ -100,3 +100,22 @@ resource "aws_security_group" "ingress-all-hotrod-winccoaSystem"{
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "ingress-all-jaeger-winccoaSystem"{
+  name = "${var.winccoaSystemName}-allow-all-jaeger-winccoaSystem"
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 16686
+    to_port = 16686
+    protocol = "tcp"
+  }
+  // Terraform removes the default rule
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}

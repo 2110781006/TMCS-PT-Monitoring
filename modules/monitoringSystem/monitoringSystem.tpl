@@ -21,6 +21,7 @@ sudo yum install jq -y
 export DB_Url=${dbUrl}
 export DB_Password=${dbPassword}
 export MY_Url=$(curl http://checkip.amazonaws.com)
+export WINCCOA_Url=${winccoaUrl}
 sudo -E sed -i "s/<url>/$DB_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sudo -E sed -i "s/<password>/$DB_Password/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/myDataSource.json
 sleep 120
@@ -35,3 +36,7 @@ sudo docker run -d --name=loki -p 3100:3100 grafana/loki
 sudo -E sed -i "s/<url>/$MY_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/lokiDatasource.json
 sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @lokiDatasource.json
 sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @winccoaLogDashboard.json
+#add jaeger datasource and dashboard
+sudo -E sed -i "s/<url>/WINCCOA_Url/" /opt/TMCS-PT-Monitoring/modules/monitoringSystem/jaegerDatasource.json
+sudo -E curl -X "POST" "http://localhost:3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDatasource.json
+sudo -E curl -X "POST" "http://localhost:3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDashboard.json
