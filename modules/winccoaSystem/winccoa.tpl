@@ -51,9 +51,10 @@ sudo docker run -d --rm --link jaeger --env JAEGER_AGENT_HOST=jaeger --env JAEGE
 #add jaeger datasource and dashboard from wincc oa system
 cd /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem
 export MY_Url=$(curl http://checkip.amazonaws.com)
-sudo -E sed -i "s/<url>/MY_Url/" /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/jaegerDatasource.json
-sudo -E curl -X "POST" "http://"+monitoringHost+":3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDatasource.json
-sudo -E curl -X "POST" "http://"+monitoringHost+":3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDashboard.json
+export Grafana_Password=${grafanaPassword}
+sudo -E sed -i "s/<url>$MY_Url/" /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/jaegerDatasource.json
+sudo -E curl -X "POST" "http://"$monitoringHost":3000/api/datasources" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDatasource.json
+sudo -E curl -X "POST" "http://"$monitoringHost":3000/api/dashboards/db" -H "Content-Type: application/json" --user admin:$Grafana_Password --data-binary @jaegerDashboard.json
 cd /opt/winccoa/TMCS-PT-Monitoring/modules/winccoaSystem/OPCUA_Client
 #wincc database unzip
 sudo unzip -ou db.zip

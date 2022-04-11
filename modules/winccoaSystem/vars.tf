@@ -18,6 +18,10 @@ variable "dbPassword" {
   type = string
 }
 
+variable "grafanaPassword" {
+  type = string
+}
+
 variable "monitoringHost" {
   type = string
 }

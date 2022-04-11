@@ -37,6 +37,7 @@ module "winccoaSystem" {
   dbUser = var.dbUser
   dbPassword = var.dbPassword
   monitoringHost = module.monitoringSystem.monitoringIp
+  grafanaPassword = var.grafanaPassword
 }
 
 output "DB-IP" {
