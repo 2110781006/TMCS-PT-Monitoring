@@ -19,7 +19,7 @@ resource "aws_instance" "winccoaSystem" {
   tags = {
     Name = "${var.winccoaSystemName}"
   }
-  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoaSystem.id, aws_security_group.ingress-all-opcuaPort-winccoaSystem.id, aws_security_group.ingress-all-dbPort-winccoaSystem.id, aws_security_group.ingress-all-hotrod-winccoaSystem.id]
+  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoaSystem.id, aws_security_group.ingress-all-opcuaPort-winccoaSystem.id, aws_security_group.ingress-all-dbPort-winccoaSystem.id, aws_security_group.ingress-all-hotrod-winccoaSystem.id, aws_security_group.ingress-all-jaeger-winccoaSystem.id]
   user_data = base64encode(templatefile("${path.module}/winccoa.tpl", { connectToOpcUaServers= var.connectToOpcUaServers, dbHost=var.dbHost, dbUser=var.dbUser, dbPassword=var.dbPassword, monitoringHost=var.monitoringHost, grafanaPassword=var.grafanaPassword } ))
 }
 
